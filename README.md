@@ -1,18 +1,43 @@
-## Getting Started
+# HERANÇA_3
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto tem como objetivo implementar um sistema informatizado para cadastro de veículos de diferentes tipos. O projeto utiliza o conceito de herança para compartilhar atributos comuns entre as classes e garantir um código mais organizado e reutilizável.
 
-## Folder Structure
+## 🚀 Enunciado:
+Um sistema foi solicitado para gerenciar veículos de vários tipos.
 
-The workspace contains two folders by default, where:
+- Os dados de um automóvel doméstico são: modelo, ano de fabricação, montadora, cor, quilometragem, quantidade máxima de passageiros, tipo de freio e airbag.
+- Os dados de uma motocicleta são: modelo, ano de fabricação, montadora, cor, quilometragem, cilindradas e torque.
+- Os dados de um caminhão são: modelo, ano de fabricação, montadora, cor, quilometragem, quantidade de eixos e peso bruto.
+- Os dados de uma bicicleta são: modelo, marca, cor, material, quantidade de marchas e amortecedor.
+- Os dados de um skate são: modelo, marca, cor e tipo das rodas.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Cada classe deve ter seus atributos encapsulados e métodos construtores para inicialização dos dados. A ideia principal é utilizar herança para evitar repetição de código e facilitar o gerenciamento dessas informações.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## 📋 Pré-requisitos
+Você precisará das seguintes ferramentas instaladas para rodar o projeto:
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+- Java JDK 23
+- Visual Studio Code
+- Git
+- GitHub
 
-## Dependency Management
+🔧 Instalação
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Clone o repositório no  computador
+Abra o projeto no Visual Studio Code
+Compile e execute o projeto
+
+🛠 Construído com
+Ferramentas e tecnologias utilizadas no desenvolvimento:
+
+Java JDK 23 
+Visual Studio Code - IDE 
+Git
+
+📌 Versão
+Versão 1.0 - Implementação inicial do projeto com as classes principais.
+Versão 1.1 - Refatoração de código e melhorias (17/09/24).
+
+✒ Autor
+Henrick Delli Colli Honorato Silva - Atividade individual - Lista de Exercícios AC2 - HERANÇA 3/4 - AC2
+

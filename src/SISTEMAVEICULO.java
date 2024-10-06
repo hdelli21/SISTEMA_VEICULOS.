@@ -18,7 +18,7 @@ public class SISTEMAVEICULO {
         System.out.println("Máximo de Passageiros: " + carro.getPassageiros());
         System.out.println("Tipo de Freio: " + carro.getFreio());
         System.out.println("Airbag: " + (carro.isAirBag() ? "Sim" : "Não"));
-        System.out.println("Comando SQL: " + carro.Insert());
+        System.out.println("Comando SQL: " + carro.insert());
 
         // Criando um objeto de Motocicleta
         MOTOCICLETAS moto = new MOTOCICLETAS();
@@ -35,7 +35,7 @@ public class SISTEMAVEICULO {
         System.out.println("Cor: " + moto.getCor());
         System.out.println("Cilindradas: " + moto.getCilindradas());
         System.out.println("Torque: " + moto.getTorque());
-        System.out.println("Comando SQL: " + moto.Insert());
+        System.out.println("Comando SQL: " + moto.insert());
 
         // Criando um objeto de Caminhão
         CAMINHAO caminhao = new CAMINHAO();
@@ -52,7 +52,7 @@ public class SISTEMAVEICULO {
         System.out.println("Cor: " + caminhao.getCor());
         System.out.println("Quantidade de Eixos: " + caminhao.getEixo());
         System.out.println("Peso Bruto: " + caminhao.getPeso());
-        System.out.println("Comando SQL: " + caminhao.Insert());
+        System.out.println("Comando SQL: " + caminhao.insert());
 
         // Criando um objeto de Bicicleta
         BICICLETA bicicleta = new BICICLETA();
@@ -69,7 +69,7 @@ public class SISTEMAVEICULO {
         System.out.println("Material: " + bicicleta.getMaterial());
         System.out.println("Marchas: " + bicicleta.getMarchas());
         System.out.println("Amortecedor: " + (bicicleta.isAmortecedores() ? "Sim" : "Não"));
-        System.out.println("Comando SQL: " + bicicleta.Insert());
+        System.out.println("Comando SQL: " + bicicleta.insert());
 
         // Criando um objeto de Skate
         Skate skate = new Skate();
@@ -82,6 +82,6 @@ public class SISTEMAVEICULO {
         System.out.println("Marca: " + skate.getMarca());
         System.out.println("Cor: " + skate.getCor());
         System.out.println("Tipo de Rodas: " + skate.getTipoRodas());
-        System.out.println("Comando SQL: " + skate.Insert());
+        System.out.println("Comando SQL: " + skate.insert());
     }
 }

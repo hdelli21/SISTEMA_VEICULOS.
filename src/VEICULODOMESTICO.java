@@ -1,51 +1,53 @@
 public class VEICULODOMESTICO extends VEICULO {
 
-    public int Passageiros;
-    public String Freio;
-    public boolean AirBag;
+    public int passageiros;
+    public String freio;
+    public boolean airBag;
 
     public VEICULODOMESTICO() {
-
+        // Construtor padrão
     }
 
-    public VEICULODOMESTICO(int Passageiros,String Freio, boolean AirBag) {
-        super();
-        this.Passageiros = Passageiros;
-        this.Freio = Freio;
-        this.AirBag = AirBag;
-
+    public VEICULODOMESTICO(int passageiros, String freio, boolean airBag) {
+        super(); // Inicializa os atributos da superclasse
+        this.passageiros = passageiros;
+        this.freio = freio;
+        this.airBag = airBag;
     }
 
     @Override
-    public String Insert() {
+    public String insert() {
         return String.format(
-                "INSERT INTO VEICULODOMESTICO (Modelo, AnoFabricacao, Montadora, cor, Passageiros, Freio, AirBag) " +
-                        "VALUES ('%s', %d, '%s', '%s', %d, '%s', %b);",
-                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), Passageiros, Freio, AirBag);
+            "INSERT INTO VEICULODOMESTICO (Modelo, AnoFabricacao, Montadora, Cor, Passageiros, Freio, AirBag) " +
+            "VALUES ('%s', %d, '%s', '%s', %d, '%s', %b);",
+            getModelo(), getAnoFabricacao(), getMontadora(), getCor(), passageiros, freio, airBag);
     }
 
     public int getPassageiros() {
-        return Passageiros;
+        return passageiros;
     }
 
     public void setPassageiros(int passageiros) {
-        Passageiros = passageiros;
+        if (passageiros <= 0) {
+            throw new IllegalArgumentException("Número de passageiros deve ser positivo.");
+        }
+        this.passageiros = passageiros;
     }
 
     public String getFreio() {
-        return Freio;
+        return freio;
     }
 
     public void setFreio(String freio) {
-        Freio = freio;
+        this.freio = freio;
     }
 
     public boolean isAirBag() {
-        return AirBag;
+        return airBag;
     }
 
     public void setAirBag(boolean airBag) {
-        AirBag = airBag;
+        this.airBag = airBag;
     }
 
 }

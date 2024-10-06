@@ -1,32 +1,34 @@
 public abstract class VEICULO {
 
-    public String Modelo;
+    public String modelo;
     public int anoFabricacao;
-    public String Montadora;
-    public String Cor;
+    public String montadora;
+    public String cor;
 
     public VEICULO() {
-
+        // Construtor padrão
     }
 
-    public VEICULO(String Modelo, int anoFabricacao, String Montadora, String Cor) {
-        this.Modelo = Modelo;
-        this.Montadora = Montadora;
-        this.anoFabricacao = anoFabricacao;
-        this.Cor = Cor;
-
-        if (Modelo == null || Modelo.isEmpty() || anoFabricacao <= 0) {
+    public VEICULO(String modelo, int anoFabricacao, String montadora, String cor) {
+        if (modelo == null || modelo.isEmpty() || anoFabricacao <= 0) {
             throw new IllegalArgumentException("Modelo e ano de fabricação são obrigatórios.");
         }
 
+        this.modelo = modelo;
+        this.anoFabricacao = anoFabricacao;
+        this.montadora = montadora;
+        this.cor = cor;
     }
 
     public String getModelo() {
-        return Modelo;
+        return modelo;
     }
 
     public void setModelo(String modelo) {
-        Modelo = modelo;
+        if (modelo == null || modelo.isEmpty()) {
+            throw new IllegalArgumentException("Modelo não pode ser vazio.");
+        }
+        this.modelo = modelo;
     }
 
     public int getAnoFabricacao() {
@@ -34,25 +36,28 @@ public abstract class VEICULO {
     }
 
     public void setAnoFabricacao(int anoFabricacao) {
+        if (anoFabricacao <= 0) {
+            throw new IllegalArgumentException("Ano de fabricação deve ser maior que zero.");
+        }
         this.anoFabricacao = anoFabricacao;
     }
 
     public String getMontadora() {
-        return Montadora;
+        return montadora;
     }
 
     public void setMontadora(String montadora) {
-        Montadora = montadora;
+        this.montadora = montadora;
     }
 
     public String getCor() {
-        return Cor;
+        return cor;
     }
 
-    public void setCor(String Cor) {
-        this.Cor = Cor;
+    public void setCor(String cor) {
+        this.cor = cor;
     }
 
     // Método abstrato para gerar o comando insert
-    public abstract String Insert();
+    public abstract String insert();
 }

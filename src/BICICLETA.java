@@ -1,60 +1,68 @@
 public class BICICLETA extends VEICULO {
 
-    public String Material;
-    public String Marca;
-    public int Marchas;
-    public boolean Amortecedores;
+    public String material;
+    public String marca;
+    public int marchas;
+    public boolean amortecedores;
 
     public BICICLETA() {
-
+        // Construtor padrão
     }
 
-    public BICICLETA(String Material, int Marchas, boolean Amortecedores, String Marca) {
-        super();
-        this.Amortecedores = Amortecedores;
-        this.Marchas = Marchas;
-        this.Material = Material;
-        this.Marca = Marca;
+    public BICICLETA (String material, int marchas, boolean amortecedores, String marca) {
+        super(); // Inicializa os atributos da superclasse
+        this.material = material;
+        this.marchas = marchas;
+        this.amortecedores = amortecedores;
+        this.marca = marca;
     }
 
     @Override
-    public String Insert() {
+    public String insert() {
         return String.format(
-                "INSERT INTO BICICLETA (Modelo, AnoFabricacao, Montadora, Cor, Passageiros, Material, Marchas,Amortecedores, Marca) "
-                        +
-                        "VALUES ('%s', %d, '%s', '%s', %d, '%s', %b);",
-                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), Material, Marchas, Amortecedores, Marca);
+                "INSERT INTO BICICLETA (Modelo, AnoFabricacao, Montadora, Cor, Material, Marchas, Amortecedores, Marca) " +
+                        "VALUES ('%s', %d, '%s', '%s', '%s', %d, %b, '%s');",
+                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), material, marchas, amortecedores, marca);
     }
 
     public String getMaterial() {
-        return Material;
-    }
-
-    public String getMarca() {
-        return Marca;
-    }
-
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
+        return material;
     }
 
     public void setMaterial(String material) {
-        Material = material;
+        if (material == null || material.isEmpty()) {
+            throw new IllegalArgumentException("Material não pode ser nulo ou vazio.");
+        }
+        this.material = material;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        if (marca == null || marca.isEmpty()) {
+            throw new IllegalArgumentException("Marca não pode ser nula ou vazia.");
+        }
+        this.marca = marca;
     }
 
     public int getMarchas() {
-        return Marchas;
+        return marchas;
     }
 
     public void setMarchas(int marchas) {
-        Marchas = marchas;
+        if (marchas < 0) {
+            throw new IllegalArgumentException("Número de marchas não pode ser negativo.");
+        }
+        this.marchas = marchas;
     }
 
     public boolean isAmortecedores() {
-        return Amortecedores;
+        return amortecedores;
     }
 
     public void setAmortecedores(boolean amortecedores) {
-        Amortecedores = amortecedores;
+        this.amortecedores = amortecedores;
     }
 }
