@@ -1,4 +1,6 @@
+
 public abstract class VEICULO {
+
 
     public String modelo;
     public int anoFabricacao;
@@ -57,7 +59,6 @@ public abstract class VEICULO {
     public void setCor(String cor) {
         this.cor = cor;
     }
-
-    // Método abstrato para gerar o comando insert
-    public abstract String insert();
-}
+    public abstract String gerarInsert();
+  }
+    

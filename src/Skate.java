@@ -13,14 +13,6 @@ public class Skate extends VEICULO {
         this.tipoRodas = tipoRodas;
     }
 
-    @Override
-    public String insert() {
-        return String.format(
-                "INSERT INTO Skate (Modelo, AnoFabricacao, Montadora, Cor, Marca, TipoRodas) " +
-                        "VALUES ('%s', %d, '%s', '%s', '%s', '%s');",
-                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), marca, tipoRodas);
-    }
-
     public String getMarca() {
         return marca;
     }
@@ -35,5 +27,12 @@ public class Skate extends VEICULO {
 
     public void setTipoRodas(String tipoRodas) {
         this.tipoRodas = tipoRodas;
+    }
+    
+    @Override
+    public String gerarInsert() {
+        return String.format("INSERT INTO Skate (modelo, ano_fabricacao, montadora, cor, marca, tipoRodas) " +
+                             "VALUES ('%s', %d, '%s', '%s', '%s', '%s');",
+                             getModelo(), getAnoFabricacao(), getMontadora(), getCor(), getMarca(), getTipoRodas());
     }
 }

@@ -10,14 +10,7 @@ public class CAMINHAO extends VEICULO {
         super(); // Inicializa os atributos da superclasse
         this.eixo = eixo;
         this.peso = peso;
-    }
-
-    @Override
-    public String insert() {
-        return String.format(
-                "INSERT INTO CAMINHAO (Modelo, AnoFabricacao, Montadora, Cor, Eixo, Peso) " +
-                        "VALUES ('%s', %d, '%s', '%s', %d, %d);",
-                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), eixo, peso);
+    
     }
 
     public int getEixo() {
@@ -40,5 +33,11 @@ public class CAMINHAO extends VEICULO {
             throw new IllegalArgumentException("Peso deve ser um valor positivo.");
         }
         this.peso = peso;
+    }
+    @Override
+    public String gerarInsert() {
+        return String.format("INSERT INTO CAMINHAO (modelo, ano_fabricacao, montadora, cor, eixo, peso) " +
+                             "VALUES ('%s', %d, '%s', '%s', %d, %d);",
+                             getModelo(), getAnoFabricacao(), getMontadora(), getCor(), getEixo(), getPeso());
     }
 }

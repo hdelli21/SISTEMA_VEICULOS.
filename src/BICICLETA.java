@@ -17,14 +17,6 @@ public class BICICLETA extends VEICULO {
         this.marca = marca;
     }
 
-    @Override
-    public String insert() {
-        return String.format(
-                "INSERT INTO BICICLETA (Modelo, AnoFabricacao, Montadora, Cor, Material, Marchas, Amortecedores, Marca) " +
-                        "VALUES ('%s', %d, '%s', '%s', '%s', %d, %b, '%s');",
-                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), material, marchas, amortecedores, marca);
-    }
-
     public String getMaterial() {
         return material;
     }
@@ -64,5 +56,11 @@ public class BICICLETA extends VEICULO {
 
     public void setAmortecedores(boolean amortecedores) {
         this.amortecedores = amortecedores;
+    }
+    @Override
+    public String gerarInsert() {
+        return String.format("INSERT INTO BICICLETA (modelo, ano_fabricacao, montadora, cor, material, marchas, amortecedores) " +
+                             "VALUES ('%s', %d, '%s', '%s', '%s', %d, %b);",
+                             getModelo(), getAnoFabricacao(), getMontadora(), getCor(), getMaterial(), getMarchas(), isAmortecedores());
     }
 }

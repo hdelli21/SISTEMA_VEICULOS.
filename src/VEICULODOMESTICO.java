@@ -15,14 +15,6 @@ public class VEICULODOMESTICO extends VEICULO {
         this.airBag = airBag;
     }
 
-    @Override
-    public String insert() {
-        return String.format(
-            "INSERT INTO VEICULODOMESTICO (Modelo, AnoFabricacao, Montadora, Cor, Passageiros, Freio, AirBag) " +
-            "VALUES ('%s', %d, '%s', '%s', %d, '%s', %b);",
-            getModelo(), getAnoFabricacao(), getMontadora(), getCor(), passageiros, freio, airBag);
-    }
-
     public int getPassageiros() {
         return passageiros;
     }
@@ -49,5 +41,11 @@ public class VEICULODOMESTICO extends VEICULO {
     public void setAirBag(boolean airBag) {
         this.airBag = airBag;
     }
-
+    @Override
+    public String gerarInsert() {
+        return String.format("INSERT INTO VEICULODOMESTICO (modelo, ano_fabricacao, montadora, cor, passageiros, freio, airBag) " +
+                             "VALUES ('%s', %d, '%s', '%s', %d, '%s', %b);",
+                             getModelo(), getAnoFabricacao(), getMontadora(), getCor(), getPassageiros(), getFreio(), isAirBag());
+    }
 }
+    

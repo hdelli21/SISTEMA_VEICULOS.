@@ -1,3 +1,9 @@
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class SISTEMAVEICULO {
 
     public static void main(String[] args) {
@@ -11,14 +17,8 @@ public class SISTEMAVEICULO {
         carro.setFreio("Disco");
         carro.setAirBag(true);
 
-        System.out.println("Modelo: " + carro.getModelo());
-        System.out.println("Ano de Fabricação: " + carro.getAnoFabricacao());
-        System.out.println("Montadora: " + carro.getMontadora());
-        System.out.println("Cor: " + carro.getCor());
-        System.out.println("Máximo de Passageiros: " + carro.getPassageiros());
-        System.out.println("Tipo de Freio: " + carro.getFreio());
-        System.out.println("Airbag: " + (carro.isAirBag() ? "Sim" : "Não"));
-        System.out.println("Comando SQL: " + carro.insert());
+        // Inserir dados do carro no banco
+        inserirVeiculo(carro);
 
         // Criando um objeto de Motocicleta
         MOTOCICLETAS moto = new MOTOCICLETAS();
@@ -29,13 +29,8 @@ public class SISTEMAVEICULO {
         moto.setCilindradas(1000);
         moto.setTorque(120);
 
-        System.out.println("Modelo: " + moto.getModelo());
-        System.out.println("Ano de Fabricação: " + moto.getAnoFabricacao());
-        System.out.println("Montadora: " + moto.getMontadora());
-        System.out.println("Cor: " + moto.getCor());
-        System.out.println("Cilindradas: " + moto.getCilindradas());
-        System.out.println("Torque: " + moto.getTorque());
-        System.out.println("Comando SQL: " + moto.insert());
+        // Inserir dados da moto no banco
+        inserirVeiculo(moto);
 
         // Criando um objeto de Caminhão
         CAMINHAO caminhao = new CAMINHAO();
@@ -46,13 +41,8 @@ public class SISTEMAVEICULO {
         caminhao.setEixo(3);
         caminhao.setPeso(12000);
 
-        System.out.println("Modelo: " + caminhao.getModelo());
-        System.out.println("Ano de Fabricação: " + caminhao.getAnoFabricacao());
-        System.out.println("Montadora: " + caminhao.getMontadora());
-        System.out.println("Cor: " + caminhao.getCor());
-        System.out.println("Quantidade de Eixos: " + caminhao.getEixo());
-        System.out.println("Peso Bruto: " + caminhao.getPeso());
-        System.out.println("Comando SQL: " + caminhao.insert());
+        // Inserir dados do caminhão no banco
+        inserirVeiculo(caminhao);
 
         // Criando um objeto de Bicicleta
         BICICLETA bicicleta = new BICICLETA();
@@ -63,13 +53,8 @@ public class SISTEMAVEICULO {
         bicicleta.setMarchas(21);
         bicicleta.setAmortecedores(true);
 
-        System.out.println("Modelo: " + bicicleta.getModelo());
-        System.out.println("Marca: " + bicicleta.getMarca());
-        System.out.println("Cor: " + bicicleta.getCor());
-        System.out.println("Material: " + bicicleta.getMaterial());
-        System.out.println("Marchas: " + bicicleta.getMarchas());
-        System.out.println("Amortecedor: " + (bicicleta.isAmortecedores() ? "Sim" : "Não"));
-        System.out.println("Comando SQL: " + bicicleta.insert());
+        // Inserir dados da bicicleta no banco
+        inserirVeiculo(bicicleta);
 
         // Criando um objeto de Skate
         Skate skate = new Skate();
@@ -78,10 +63,79 @@ public class SISTEMAVEICULO {
         skate.setCor("Vermelho");
         skate.setTipoRodas("Goma");
 
-        System.out.println("Modelo: " + skate.getModelo());
-        System.out.println("Marca: " + skate.getMarca());
-        System.out.println("Cor: " + skate.getCor());
-        System.out.println("Tipo de Rodas: " + skate.getTipoRodas());
-        System.out.println("Comando SQL: " + skate.insert());
+        // Inserir dados do skate no banco
+        inserirVeiculo(skate);
+    }
+
+    // Método genérico para inserir qualquer tipo de veículo
+    public static void inserirVeiculo(VEICULO veiculo) {
+        // Estabelecer a conexão com o banco
+        try (Connection conexao = CONEXAOBD_VEICULO.conectar()) {
+            String sql = "";
+
+            // Preparar o comando SQL de inserção dependendo do tipo do veículo
+            if (veiculo instanceof VEICULODOMESTICO) {
+                VEICULODOMESTICO carro = (VEICULODOMESTICO) veiculo;
+                sql = "INSERT INTO VEICULODOMESTICO (modelo, ano_fabricacao, montadora, cor, passageiros, freio, airBag) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                    stmt.setString(1, carro.getModelo());
+                    stmt.setInt(2, carro.getAnoFabricacao());
+                    stmt.setString(3, carro.getMontadora());
+                    stmt.setString(4, carro.getCor());
+                    stmt.setInt(5, carro.getPassageiros());
+                    stmt.setString(6, carro.getFreio());
+                    stmt.setBoolean(7, carro.isAirBag());
+                    stmt.executeUpdate();
+                }
+            } else if (veiculo instanceof MOTOCICLETAS) {
+                MOTOCICLETAS moto = (MOTOCICLETAS) veiculo;
+                sql = "INSERT INTO MOTOCICLETAS (modelo, ano_fabricacao, montadora, cor, cilindradas, torque) VALUES (?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                    stmt.setString(1, moto.getModelo());
+                    stmt.setInt(2, moto.getAnoFabricacao());
+                    stmt.setString(3, moto.getMontadora());
+                    stmt.setString(4, moto.getCor());
+                    stmt.setInt(5, moto.getCilindradas());
+                    stmt.setInt(6, moto.getTorque());
+                    stmt.executeUpdate();
+                }
+            } else if (veiculo instanceof CAMINHAO) {
+                CAMINHAO caminhao = (CAMINHAO) veiculo;
+                sql = "INSERT INTO CAMINHAO (modelo, ano_fabricacao, montadora, cor, eixo, peso) VALUES (?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                    stmt.setString(1, caminhao.getModelo());
+                    stmt.setInt(2, caminhao.getAnoFabricacao());
+                    stmt.setString(3, caminhao.getMontadora());
+                    stmt.setString(4, caminhao.getCor());
+                    stmt.setInt(5, caminhao.getEixo());
+                    stmt.setInt(6, caminhao.getPeso());
+                    stmt.executeUpdate();
+                }
+            } else if (veiculo instanceof BICICLETA) {
+                BICICLETA bicicleta = (BICICLETA) veiculo;
+                sql = "INSERT INTO BICICLETA (modelo, marca, cor, material, marchas, amortecedores) VALUES (?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                    stmt.setString(1, bicicleta.getModelo());
+                    stmt.setString(2, bicicleta.getMarca());
+                    stmt.setString(3, bicicleta.getCor());
+                    stmt.setString(4, bicicleta.getMaterial());
+                    stmt.setInt(5, bicicleta.getMarchas());
+                    stmt.setBoolean(6, bicicleta.isAmortecedores());
+                    stmt.executeUpdate();
+                }
+            } else if (veiculo instanceof Skate) {
+                Skate skate = (Skate) veiculo;
+                sql = "INSERT INTO Skate (modelo, marca, cor, tipoRodas) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+                    stmt.setString(1, skate.getModelo());
+                    stmt.setString(2, skate.getMarca());
+                    stmt.setString(3, skate.getCor());
+                    stmt.setString(4, skate.getTipoRodas());
+                    stmt.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

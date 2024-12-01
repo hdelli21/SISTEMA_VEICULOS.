@@ -13,14 +13,6 @@ public class MOTOCICLETAS extends VEICULO {
         this.torque = torque;
     }
 
-    @Override
-    public String insert() {
-        return String.format(
-                "INSERT INTO MOTOCICLETAS (Modelo, AnoFabricacao, Montadora, Cor, Cilindradas, Torque) " +
-                        "VALUES ('%s', %d, '%s', '%s', %d, %d);",
-                getModelo(), getAnoFabricacao(), getMontadora(), getCor(), cilindradas, torque);
-    }
-
     public int getCilindradas() {
         return cilindradas;
     }
@@ -41,5 +33,12 @@ public class MOTOCICLETAS extends VEICULO {
             throw new IllegalArgumentException("Torque deve ser um valor positivo.");
         }
         this.torque = torque;
+    }
+    
+    @Override
+    public String gerarInsert() {
+        return String.format("INSERT INTO MOTOCICLETAS (modelo, ano_fabricacao, montadora, cor, cilindradas, torque) " +
+                             "VALUES ('%s', %d, '%s', '%s', %d, %d);",
+                             getModelo(), getAnoFabricacao(), getMontadora(), getCor(), getCilindradas(), getTorque());
     }
 }
