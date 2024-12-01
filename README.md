@@ -55,6 +55,16 @@ modelo, marca, cor, tipoRodas.
 📌 Versão
 Versão 1.0 - Implementação inicial do projeto com as classes principais.
 Versão 1.1 - Refatoração de código e melhorias (01/12/24).
+
+🖼️ Modelo De Tela
+![BICICLETA](https://github.com/user-attachments/assets/65610c7c-f025-41cf-b24c-98f694896394)
+![CAMINHAO](https://github.com/user-attachments/assets/43cbaa5d-2c7e-4de7-b570-d52edacacf5a)
+![MOTOCICLETAS](https://github.com/user-attachments/assets/8c9a88c8-642b-4cf9-875a-5032ba277fff)
+![SKATE](https://github.com/user-attachments/assets/fa897af3-99f7-4185-9ab9-72289b7fc6e3)
+![VEICULODOMESTICO](https://github.com/user-attachments/assets/3bb535bc-8d9e-4171-87a4-cf7f242e028c)
+
+
+
 ✒ Autor
 Henrick Delli Colli Honorato Silva - Atividade individual - Sistema de Veículos - AF
 
